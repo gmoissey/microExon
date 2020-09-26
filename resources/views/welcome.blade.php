@@ -54,34 +54,30 @@
 
             <table class="table top-buffer">
                 <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Some Info</th>
-                    <th scope="col">Some Info</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Cluster1</td>
-                    <td>23123</td>
-                    <td>3k4j32l</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Cluster2</td>
-                    <td>234234</td>
-                    <td>3klj234k</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Cluster3</td>
-                    <td>34249</td>
-                    <td>lkj34lk2</td>
-                  </tr>
-                </tbody>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">ME Logo</th>
+                      <th scope="col">Size</th>
+                      <th scope="col">Phase</th>
+                      <th scope="col">Motif</th>
+                    </tr>
+                  </thead>
+
+                  <tbody class="tableMainCluster">
+                    @foreach ($allClusters as $cluster)
+                        <tr>
+                            <th scope="row"><a href="{{ $cluster -> cluster_ID }}" class="btn stretched-link">{{ $cluster -> cluster_ID }}</a></th>
+                            <td class="w-25">
+                            <img src="{{ substr($cluster -> ME_logo_files, 0, -3) . 'png' }}" class="img-fluid img-thumbnail" alt="ME_Logo">
+                            </td>
+                            <td>{{ $cluster -> size }}</td>
+                            <td>{{ $cluster -> phase }}</td>
+                            <td>{{ $cluster -> pfamMotif }}</td>
+                        </tr>
+                    @endforeach
+                  </tbody>
             </table>
+
 
         </div>
         <div class="col2Home col-4">
