@@ -1,22 +1,6 @@
 @extends('layouts.header_footer_layout')
 @section('content')
 
-<!--
-<ul class="nav nav-tabs tabs">
-    <li class="nav-item" id="firstTab">
-        <a class="nav-link active" href="#">Tab1</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="#">Tab2</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="#">Tab3</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-    </li>
-</ul>
--->
 <div class="container">
 
     <div class="homeContent row">

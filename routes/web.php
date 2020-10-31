@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MainClusterController@index');
 
 Route::get('/{id}', 'MainClusterController@show');
+
+Route::get('/{id}/{microExonID}', 'MainClusterController@microExonDetails');
