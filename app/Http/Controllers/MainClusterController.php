@@ -55,4 +55,21 @@ class MainClusterController extends Controller
             ]);
         }
     }
+
+    public function downloadFile($clusterID, $fileType){
+        $cluster = MainCluster::where('cluster_ID', $clusterID)->get();
+        $arr = explode("/", $cluster[0][$fileType]);
+
+        if(count($cluster) == 0 || count($arr) < 2){
+            return view('404NotFound');
+        }else{
+            $headers = array(
+                "Content-type: application/fa",
+            );
+
+            $file =  public_path() . '/logo_files/'. $arr[1];
+
+            return response()->download($file, $clusterID . '_' . $fileType, $headers);
+        }
+    }
 }
