@@ -22,6 +22,16 @@ class MainClusterController extends Controller
     public function show($id){
         $cluster = MainCluster::where('cluster_ID', $id)->get();
         $meList = MEList::where('clusterID', $id)->get();
+        $filename1 = explode("/", $cluster[0]["NT60_consensusMatrix_files"])[1];
+        $filename2 = explode("/", $cluster[0]["AA20_consensusMatrix_files"])[1];
+        $filename1 = substr($filename1, 0, -3);
+        $filename2 = substr($filename2, 0, -3);
+
+        $path1 = public_path() . "/matrices/${filename1}json";
+        $path2 = public_path() . "/matrices/${filename2}json";
+
+        $NT60matrix = json_decode(file_get_contents($path1), true);
+        $AA20matrix = json_decode(file_get_contents($path2), true);
 
         if(count($cluster) == 0){
             return view('404NotFound');
@@ -30,6 +40,8 @@ class MainClusterController extends Controller
                 'id' => $id,
                 'cluster' => $cluster,
                 'meList' => $meList,
+                'AA20matrix' => $AA20matrix,
+                'NT60matrix' => $NT60matrix
             ]);
         }
     }

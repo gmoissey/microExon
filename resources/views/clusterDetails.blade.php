@@ -46,6 +46,68 @@
     <p>
 
     <p>
+        <a class="btn btn-outline-success" data-toggle="collapse" href="#NT60matrix" role="button" aria-expanded="false" aria-controls="generalInfo">
+            NT60 consensus matrix
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-compact-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
+          </svg>
+        </a>
+    </p>
+    <div class="row collapse" style="overflow-x:auto;" id="NT60matrix">
+        <table class="table table-sm table-bordered table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                @for ($i = 0; $i < count($NT60matrix["A"]); $i++)
+                <th scope="col">{{$i + 1}}</th>
+                @endfor
+              </tr>
+            </thead>
+            <tbody>
+                @foreach($NT60matrix as $key => $val)
+                    <tr>
+                        <th scope="row">{{ $key }}</th>
+                        @for ($i = 0; $i < count($val); $i++)
+                            <td>{{ $val[$i] }}</td>
+                        @endfor
+                    </tr>
+                @endforeach
+            </tbody>
+          </table>
+    </div>
+
+    <p>
+        <a class="btn btn-outline-success" data-toggle="collapse" href="#AA20matrix" role="button" aria-expanded="false" aria-controls="generalInfo">
+            AA20 consensus matrix
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-compact-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
+          </svg>
+        </a>
+    </p>
+    <div class="row collapse" style="overflow-x:auto;" id="AA20matrix">
+        <table class="table table-sm table-bordered table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                @for ($i = 0; $i < count($AA20matrix["A"]); $i++)
+                <th scope="col">{{$i + 1}}</th>
+                @endfor
+              </tr>
+            </thead>
+            <tbody>
+                @foreach($AA20matrix as $key => $val)
+                    <tr>
+                        <th scope="row">{{ $key }}</th>
+                        @for ($i = 0; $i < count($val); $i++)
+                            <td>{{ $val[$i] }}</td>
+                        @endfor
+                    </tr>
+                @endforeach
+            </tbody>
+          </table>
+    </div>
+
+    <p>
         <a class="btn btn-outline-dark" data-toggle="collapse" href="#generalInfo" role="button" aria-expanded="false" aria-controls="generalInfo">
           NT60 and AA20
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-compact-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +201,7 @@
     </div>
 
 
-    <table class="table table-striped" style="margin-top:20px">
+    <table class="table table-striped table-sm" style="margin-top:20px">
         <thead>
           <tr>
             <th scope="col">microExon ID</th>
