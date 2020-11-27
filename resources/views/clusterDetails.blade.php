@@ -38,13 +38,23 @@
     </div>
 
     </p>
+        <b>NT60 files download links: </b>
         <a href="/download/{{ $id }}/NT60_seq_files" class="badge badge-secondary">NT60 Sequence File</a>
         <a href="/download/{{ $id }}/NT60_consensusString_files" class="badge badge-secondary">NT60 Consensus String</a>
         <a href="/download/{{ $id }}/NT60_consensusMatrix_files" class="badge badge-secondary">NT60 Consensus Matrix</a>
+        <br>
+        <b>AA20 files download links: </b>
         <a href="/download/{{ $id }}/AA20_consensusString_files" class="badge badge-secondary">AA20 Consensus String</a>
         <a href="/download/{{ $id }}/AA20_consensusMatrix_files" class="badge badge-secondary" class="badge badge-secondary">AA20 Consensus Matrix</a>
     <p>
 
+    <p>
+       <b>NT60 consensus string:</b> {{ $NT60string }}<br>
+        <b>AA20 consensus sring:</b> {{ $AA20string }}
+    </p>
+
+    <!--
+    @if($id != 'MEP99')
     <p>
         <a class="btn btn-outline-success" data-toggle="collapse" href="#NT60matrix" role="button" aria-expanded="false" aria-controls="generalInfo">
             NT60 consensus matrix
@@ -106,6 +116,8 @@
             </tbody>
           </table>
     </div>
+    @endif
+    -->
 
     <p>
         <a class="btn btn-outline-dark" data-toggle="collapse" href="#generalInfo" role="button" aria-expanded="false" aria-controls="generalInfo">

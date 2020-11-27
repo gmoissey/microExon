@@ -19,4 +19,7 @@ Route::get('/{id}', 'MainClusterController@show');
 
 Route::get('/{id}/{microExonID}', 'MainClusterController@microExonDetails');
 
-Route::get('/download/{clusterID}/{fileType}', 'MainClusterController@downloadFile');
+Route::get('/download/seq_files/{publicFilePath}', 'MainClusterController@downloadSeqFile');
+
+Route::get('/download/{clusterID}/{fileType}', 'MainClusterController@downloadConsensusFiles');
+

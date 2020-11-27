@@ -22,16 +22,31 @@ class MainClusterController extends Controller
     public function show($id){
         $cluster = MainCluster::where('cluster_ID', $id)->get();
         $meList = MEList::where('clusterID', $id)->get();
-        $filename1 = explode("/", $cluster[0]["NT60_consensusMatrix_files"])[1];
-        $filename2 = explode("/", $cluster[0]["AA20_consensusMatrix_files"])[1];
-        $filename1 = substr($filename1, 0, -3);
-        $filename2 = substr($filename2, 0, -3);
 
-        $path1 = public_path() . "/matrices/${filename1}json";
-        $path2 = public_path() . "/matrices/${filename2}json";
+        if($id != 'MEP99'){
+            //Getting NT60 and AA20 consensys matrix data from json
+            $consensusMatrix1 = explode("/", $cluster[0]["NT60_consensusMatrix_files"])[1];
+            $consensusMatrix2 = explode("/", $cluster[0]["AA20_consensusMatrix_files"])[1];
+            $consensusMatrix1 = substr($consensusMatrix1, 0, -3);
+            $consensusMatrix2 = substr($consensusMatrix2, 0, -3);
+            $pathMatrix1 = public_path() . "/matrices/${consensusMatrix1}json";
+            $pathMatrix2 = public_path() . "/matrices/${consensusMatrix2}json";
+            $NT60matrix = json_decode(file_get_contents($pathMatrix1), true);
+            $AA20matrix = json_decode(file_get_contents($pathMatrix2), true);
 
-        $NT60matrix = json_decode(file_get_contents($path1), true);
-        $AA20matrix = json_decode(file_get_contents($path2), true);
+            //Getting NT60 and AA20 consesus string
+            $consensusStiring1 = substr(explode("/", $cluster[0]["NT60_consensusString_files"])[1], 0, -3);
+            $consensusStiring2 = substr(explode("/", $cluster[0]["AA20_consensusString_files"])[1], 0, -3);
+            $stringPath1 = public_path() . "/logo_files/${consensusStiring1}txt";
+            $stringPath2 = public_path() . "/logo_files/${consensusStiring2}txt";
+            $NT60string = file_get_contents($stringPath1);
+            $AA20string = file_get_contents($stringPath2);
+        }else{
+            $NT60string = 'NO RECORDS FOUND';
+            $AA20string = 'NO RECORDS FOUND';
+            $NT60matrix = 'NO RECORDS FOUND';
+            $AA20matrix = 'NO RECORDS FOUND';
+        }
 
         if(count($cluster) == 0){
             return view('404NotFound');
@@ -41,7 +56,9 @@ class MainClusterController extends Controller
                 'cluster' => $cluster,
                 'meList' => $meList,
                 'AA20matrix' => $AA20matrix,
-                'NT60matrix' => $NT60matrix
+                'NT60matrix' => $NT60matrix,
+                'AA20string' => $AA20string,
+                'NT60string' => $NT60string
             ]);
         }
     }
@@ -68,7 +85,7 @@ class MainClusterController extends Controller
         }
     }
 
-    public function downloadFile($clusterID, $fileType){
+    public function downloadConsensusFiles($clusterID, $fileType){
         $cluster = MainCluster::where('cluster_ID', $clusterID)->get();
         $arr = explode("/", $cluster[0][$fileType]);
 
@@ -83,5 +100,18 @@ class MainClusterController extends Controller
 
             return response()->download($file, $clusterID . '_' . $fileType, $headers);
         }
+    }
+
+    public function downloadSeqFile($publicFilePath){
+
+
+        $headers = array(
+            "Content-type: application/fa",
+        );
+
+        $file =  public_path(). '/seq_files/' . $publicFilePath;
+
+        return response()->download($file, $publicFilePath, $headers);
+
     }
 }

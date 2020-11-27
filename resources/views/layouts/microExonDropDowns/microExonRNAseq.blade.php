@@ -23,63 +23,6 @@
         <div class="col-6">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>Species</b>
-                    <span>{{$rnaSeq[0] -> species}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>Char</b>
-                    <span>{{$rnaSeq[0] -> chr}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>Start</b>
-                    <span>{{$rnaSeq[0] -> start}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>End</b>
-                    <span>{{$rnaSeq[0] -> end}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>Strand</b>
-                    <span>{{$rnaSeq[0] -> strand}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>Size</b>
-                    <span>{{$rnaSeq[0] -> size}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>Phase</b>
-                    <span>{{$rnaSeq[0] -> phase}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>ME NT</b>
-                    <span>{{$rnaSeq[0] -> me_nt}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>ME AA</b>
-                    <span>{{$rnaSeq[0] -> me_aa}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>NT 60</b>
-                    <span>{{ $genomeSeq = chunk_split($rnaSeq[0]['nt60'], 4, ' ') }}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>AA 20</b>
-                    <span>{{$rnaSeq[0] -> aa20}}</span>
-                </li>
-            </ul>
-        </div>
-
-        <div class="col-6">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>Blocks</b>
-                    <span>{{$rnaSeq[0] -> blocks}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
-                    <b>ME Order</b>
-                    <span>{{$rnaSeq[0] -> me_order}}</span>
-                </li>
-                <li class="list-group-item justify-content-between d-flex align-items-center">
                     <b>Transcript ID</b>
                     <span>{{$rnaSeq[0] -> transcript_id}}</span>
                 </li>
@@ -99,6 +42,11 @@
                     <b>MOTIF End</b>
                     <span>{{$rnaSeq[0] -> motif_end}}</span>
                 </li>
+            </ul>
+        </div>
+
+        <div class="col-6">
+            <ul class="list-group list-group-flush">
                 <li class="list-group-item justify-content-between d-flex align-items-center">
                     <b>Ref. Gene ID</b>
                     <span>{{$rnaSeq[0] -> ref_gene_id}}</span>
@@ -109,11 +57,15 @@
                 </li>
                 <li class="list-group-item justify-content-between d-flex align-items-center">
                     <b>Protein Files</b>
-                    <span>{{$rnaSeq[0] -> protein_files}}</span>
+                    <span>
+                        <a href="/download/{{ $rnaSeq[0] -> protein_files }}" class="btn stretched-link">{{ $rnaSeq[0] -> protein_files }}</a>
+                    </span>
                 </li>
                 <li class="list-group-item justify-content-between d-flex align-items-center">
                     <b>CDS Files</b>
-                    <span>{{$rnaSeq[0] -> cds_files}}</span>
+                    <span>
+                        <a href="/download/{{ $rnaSeq[0] -> cds_files }}" class="btn stretched-link">{{ $rnaSeq[0] -> cds_files }}</a>
+                    </span>
                 </li>
                 <li class="list-group-item justify-content-between d-flex align-items-center">
                     <b>Annotated</b>
