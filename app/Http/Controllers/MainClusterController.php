@@ -69,6 +69,35 @@ class MainClusterController extends Controller
         $annotation = Annotation::where('microExonID', $microExonID)->get();
         $rnaSeq = RNAseq::where('microExonID', $microExonID)->get();
 
+        $jbrowse = "http://localhost/jbrowse/JBrowse-1.16.10/index.html?data=";
+        $idTmp = $microExonID;
+
+        $speciesDict = array("At"=>"A_thalian",
+                        "Cr"=>"C_reinhardtii",
+                        "Gm"=>"G_max",
+                        "Ha"=>"H_annuus",
+                        "Os"=>"O_sativa",
+                        "Pp"=>"P_patens",
+                        "Ps"=>"P_somniferum",
+                        "Sm"=>"S_moellendorffii",
+                        "Vv"=>"V_vinifera",
+                        "Zm"=>"Z_mays");
+
+        $specieShort = substr($microExonID, 0, 2);
+        $specie = $speciesDict[$specieShort];
+        $idTmp = substr($idTmp, 3);
+        $idArray = explode(":", $idTmp);
+        $region = $idArray[0];
+        $location = str_replace("-", "..", $idArray[1]);
+
+        $jbrowseLink = $jbrowse . $specie . "&tracklist=0&nav=0&overview=0&loc=" . $region . "%3A" . $location .
+                        "&tracks=refseq%2C" . $specieShort . "_Annotation%2C" .
+                        $specieShort . "BigWig%2C" .
+                        $specieShort . "_Prediction%2C" .  $specieShort . "_RNAseq&highlight=";
+
+        //$jbrowseLink = "http://localhost/jbrowse/JBrowse-1.16.10/index.html?data=A_thalian&tracklist=0&nav=0&overview=0&loc=3%3A1754286..1754338&tracks=DNA%2CAt_annotation%2CrnaSeq%2CAt_Prediction%2CAt_RNAseq&highlight="
+
+
         if(count($meList) == 0 ||
             (count($prediction) == 0 &&
             count($annotation) == 0 &&
@@ -81,6 +110,7 @@ class MainClusterController extends Controller
                 'prediction' => $prediction,
                 'annotation' => $annotation,
                 'rnaSeq' => $rnaSeq,
+                'jbrowseLink' => $jbrowseLink,
             ]);
         }
     }

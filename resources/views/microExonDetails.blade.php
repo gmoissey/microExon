@@ -203,11 +203,25 @@
     </div>
     @endif
 
+    <div calss="row">
+
+        <br>
+        <div style="width: 100%; margin: 0 auto;">
+            <iframe
+                src="{{ $jbrowseLink }}"
+                style="border: 1px solid black"
+                width="100%"
+                height="350"
+            >
+            </iframe>
+    </div>
+
     @include('layouts.microExonDropDowns.microExonPrediction')
 
     @include('layouts.microExonDropDowns.microExonRNAseq')
 
     @include('layouts.microExonDropDowns.microExonAnnotation')
+
 
 </div>
 
