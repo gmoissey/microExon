@@ -1,16 +1,27 @@
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-            this.getElementsByClassName("dropStatus")[0].innerHTML = "+";
-            panel.style.display = "none";
-        } else {
-            this.getElementsByClassName("dropStatus")[0].innerHTML = "-";
-            panel.style.display = "block";
+$(document).ready(function(){
+    $('#limitSelector').on('change', function(){
+    	var limit = $(this).val(); 
+        var phase;
+        if ($('#phaseCheck').is(":checked"))
+{           phase = "phaseOn";
+        }else{
+            phase = "phaseOff";
         }
+
+        var src = $("#msaImage").attr('src').substring(0, 17) + limit + "_" + phase + ".png";
+        $("#msaImage").attr("src",src)
     });
-}
+
+    $('#phaseCheck').on('change', function(){
+    	var limit = $('#limitSelector').val(); 
+        var phase;
+        if ($('#phaseCheck').is(":checked"))
+{           phase = "phaseOn";
+        }else{
+            phase = "phaseOff";
+        }
+
+        var src = $("#msaImage").attr('src').substring(0, 17) + limit + "_" + phase + ".png";
+        $("#msaImage").attr("src",src)
+    });
+});

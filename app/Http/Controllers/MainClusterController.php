@@ -21,7 +21,7 @@ class MainClusterController extends Controller
 
     public function show($id){
         $cluster = MainCluster::where('cluster_ID', $id)->get();
-        $meList = MEList::where('clusterID', $id)->get();
+        $meList = MEList::where('clusterID', $id)->paginate(15);;
 
         if($id != 'MEP99'){
             //Getting NT60 and AA20 consensys matrix data from json

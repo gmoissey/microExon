@@ -1,7 +1,7 @@
 @extends('layouts.header_footer_layout')
 @section('content')
 
-<div class="container">
+<div class="container-fluid" style="padding:0 5% 0 5%">
 
     <div class="homeContent row">
 
@@ -66,11 +66,11 @@
 
         </div>
         <div class="col2Home col-4">
-            <div>
+            <div style="margin-left: 20%; border: 2px solid rgba(25,124,204,0.23);">
                 <script type="text/javascript" src="//rf.revolvermaps.com/0/0/6.js?i=54yj8iit7o0&amp;m=7&amp;c=e63100&amp;cr1=ffffff&amp;f=arial&amp;l=0&amp;bv=90&amp;lx=-420&amp;ly=420&amp;hi=20&amp;he=7&amp;hc=a8ddff&amp;rs=80" async="async"></script>
             </div>
 
-            <div class="card top-buffer" style="width: 18rem;">
+            <div class="card top-buffer float-right" style="width: 18rem;">
                 <img class="card-img-top" src="img/icon-no-image.svg" alt="Card image cap">
                 <div class="card-body">
                 <h5 class="card-title">Card title</h5>

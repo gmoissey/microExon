@@ -31,7 +31,7 @@
             </ul>
         </div>
         <div class="col-6">
-            <picture>
+            <picture class="float-right">
                 <img src="/{{ substr($cluster[0] -> ME_logo_files, 0, -3) . 'png' }}" class="img-fluid img-thumbnail" style="height: 280px" alt="ME_Logo">
             </picture>
         </div>
@@ -52,73 +52,7 @@
        <b>NT60 consensus string:</b> {{ $NT60string }}<br>
         <b>AA20 consensus sring:</b> {{ $AA20string }}
     </p>
-
-    <!--
-    @if($id != 'MEP99')
-    <p>
-        <a class="btn btn-outline-success" data-toggle="collapse" href="#NT60matrix" role="button" aria-expanded="false" aria-controls="generalInfo">
-            NT60 consensus matrix
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-compact-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
-          </svg>
-        </a>
-    </p>
-    <div class="row collapse" style="overflow-x:auto;" id="NT60matrix">
-        <table class="table table-sm table-bordered table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                @for ($i = 0; $i < count($NT60matrix["A"]); $i++)
-                <th scope="col">{{$i + 1}}</th>
-                @endfor
-              </tr>
-            </thead>
-            <tbody>
-                @foreach($NT60matrix as $key => $val)
-                    <tr>
-                        <th scope="row">{{ $key }}</th>
-                        @for ($i = 0; $i < count($val); $i++)
-                            <td>{{ $val[$i] }}</td>
-                        @endfor
-                    </tr>
-                @endforeach
-            </tbody>
-          </table>
-    </div>
-
-    <p>
-        <a class="btn btn-outline-success" data-toggle="collapse" href="#AA20matrix" role="button" aria-expanded="false" aria-controls="generalInfo">
-            AA20 consensus matrix
-          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-compact-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
-          </svg>
-        </a>
-    </p>
-    <div class="row collapse" style="overflow-x:auto;" id="AA20matrix">
-        <table class="table table-sm table-bordered table-striped">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                @for ($i = 0; $i < count($AA20matrix["A"]); $i++)
-                <th scope="col">{{$i + 1}}</th>
-                @endfor
-              </tr>
-            </thead>
-            <tbody>
-                @foreach($AA20matrix as $key => $val)
-                    <tr>
-                        <th scope="row">{{ $key }}</th>
-                        @for ($i = 0; $i < count($val); $i++)
-                            <td>{{ $val[$i] }}</td>
-                        @endfor
-                    </tr>
-                @endforeach
-            </tbody>
-          </table>
-    </div>
-    @endif
-    -->
-
+    
     <p>
         <a class="btn btn-outline-dark" data-toggle="collapse" href="#generalInfo" role="button" aria-expanded="false" aria-controls="generalInfo">
           NT60 and AA20
@@ -146,72 +80,34 @@
         </div>
     </div>
 
-    <p style="margin-top: 10px">
-        <a class="btn btn-outline-dark" data-toggle="collapse" href="#phaseOffCollapse" role="button" aria-expanded="false" aria-controls="phaseOffCollapse">
-            MSA Phase Off
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-compact-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
-            </svg>
-        </a>
-    </p>
-    <div class="collapse" id="phaseOffCollapse">
-        <div class="card card-body">
-            <div class="row">
-                <div class="col-4">
-                    <figure class="figure">
-                        <img src="/{{ substr($cluster[0] -> msa_files_limit50_phaseOff, 0, -3) . 'png' }}" class="img-fluid img-thumbnail"  alt="ME_Logo">
-                        <figcaption class="figure-caption text-center">MSA Limit 50, phase Off</figcaption>
-                    </figure>
-                </div>
-                <div class="col-4">
-                    <figure class="figure">
-                        <img src="/{{ substr($cluster[0] -> msa_files_limit500_phaseOff, 0, -3) . 'png' }}" class="img-fluid img-thumbnail"  alt="ME_Logo">
-                        <figcaption class="figure-caption text-center">MSA Limit 500, phase Off</figcaption>
-                    </figure>
-                </div>
-                <div class="col-4">
-                    <figure class="figure">
-                        <img src="/{{ substr($cluster[0] -> msa_files_limitNA_phaseOff, 0, -3) . 'png' }}" class="img-fluid img-thumbnail"  alt="ME_Logo">
-                        <figcaption class="figure-caption text-center">MSA Limit NA, phase Off</figcaption>
-                    </figure>
+
+
+    <div class="card" style="width: 36rem;">
+        <div class="card-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        Limit: 
+                        <select class="form-select" id="limitSelector" aria-label="Default select example">
+                            <option value="limit50" selected>50</option>
+                            <option value="limit500">500</option>
+                            <option value="limitNA">NA</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <div class="float-right">
+                            <input type="checkbox" id="phaseCheck" class="form-check-input" id="phaseOnCheck">
+                            Phase On
+                        </div>
+                    </div>
                 </div>
             </div>
+
+        </div>
+        <div class="card-body">
+            <img id="msaImage" src="/{{ substr($cluster[0] -> msa_files_limit50_phaseOff, 0, -3) . 'png' }}" class="card-img-bottom" alt="..." style="width: 33rem;">
         </div>
     </div>
-
-    <p style="margin-top: 10px">
-        <a class="btn btn-outline-dark" data-toggle="collapse" href="#phaseOnCollapse" role="button" aria-expanded="false" aria-controls="phaseOnCollapse">
-            MSA Phase On
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-compact-down" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67z"/>
-            </svg>
-        </a>
-    </p>
-    <div class="collapse" id="phaseOnCollapse">
-        <div class="card card-body">
-            <div class="row">
-                <div class="col-4">
-                    <figure class="figure">
-                        <img src="/{{ substr($cluster[0] -> msa_files_limit50_phaseOn, 0, -3) . 'png' }}" class="img-fluid img-thumbnail"  alt="ME_Logo">
-                        <figcaption class="figure-caption text-center">MSA Limit 50, phase On</figcaption>
-                    </figure>
-                </div>
-                <div class="col-4">
-                    <figure class="figure">
-                        <img src="/{{ substr($cluster[0] -> msa_files_limit500_phaseOn, 0, -3) . 'png' }}" class="img-fluid img-thumbnail"  alt="ME_Logo">
-                        <figcaption class="figure-caption text-center">MSA Limit 500, phase On</figcaption>
-                    </figure>
-                </div>
-                <div class="col-4">
-                    <figure class="figure">
-                        <img src="/{{ substr($cluster[0] -> msa_files_limitNA_phaseOn, 0, -3) . 'png' }}" class="img-fluid img-thumbnail"  alt="ME_Logo">
-                        <figcaption class="figure-caption text-center">MSA Limit NA, phase On</figcaption>
-                    </figure>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <table class="table table-striped table-sm" style="margin-top:20px">
         <thead>
@@ -276,7 +172,9 @@
         </tbody>
     </table>
 
-
+    <div class="d-flex justify-content-center">
+        {!! $meList->links() !!}
+    </div>
 </div>
 
 @stop
