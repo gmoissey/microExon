@@ -1,24 +1,24 @@
 @if(count($rnaSeq) == 0)
 
-<button class="accordion btn text-left">
+<button class="btn text-left" style="width: 100%;" data-toggle="collapse" data-target="#rnaSeqPanel" aria-controls="rnaSeqPanel">
     <b>
         RNA Sequence
         <span style="float: right;" class="dropStatus">+</span>
     </b>
 </button>
-<div class="panel alert alert-danger" style="margin-top: 30px;">
+<div class="collapse alert alert-danger" style="margin-top: 20px;" id="rnaSeqPanel">
     RNA Sequence records not found.
 </div>
 
 @else
 
-<button class="accordion btn text-left">
+<button class="btn text-left" style="width: 100%;" data-toggle="collapse" data-target="#rnaSeqPanel" aria-controls="rnaSeqPanel">
     <b>
         RNA Sequence
         <span style="float: right;" class="dropStatus">+</span>
     </b>
 </button>
-<div class="panel">
+<div class="collapse" id="rnaSeqPanel">
     <div class="row">
         <div class="col-6">
             <ul class="list-group list-group-flush">

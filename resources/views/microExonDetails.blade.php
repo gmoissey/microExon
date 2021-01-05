@@ -180,7 +180,7 @@
                 </li>
                 <li class="list-group-item justify-content-between d-flex align-items-center">
                     <b>NT 60</b>
-                    <span>{{ $rnaSeq = chunk_split($rnaSeq[0]['nt60'], 4, ' ') }}</span>
+                    <span>{{ chunk_split($rnaSeq[0]['nt60'], 4, ' ') }}</span>
                 </li>
                 <li class="list-group-item justify-content-between d-flex align-items-center">
                     <b>AA 20</b>
@@ -216,12 +216,13 @@
             </iframe>
     </div>
 
+    <p></p>
     @include('layouts.microExonDropDowns.microExonPrediction')
-
+    <p></p>
     @include('layouts.microExonDropDowns.microExonRNAseq')
-
+    <p></p>
     @include('layouts.microExonDropDowns.microExonAnnotation')
-
+    <p></p>
 
 </div>
 

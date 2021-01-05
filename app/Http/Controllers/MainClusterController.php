@@ -69,7 +69,7 @@ class MainClusterController extends Controller
         $annotation = Annotation::where('microExonID', $microExonID)->get();
         $rnaSeq = RNAseq::where('microExonID', $microExonID)->get();
 
-        $jbrowse = "http://localhost/jbrowse/JBrowse-1.16.10/index.html?data=";
+        $jbrowse = "http://localhost:8001/jbrowse/jBrowse/index.html?data=";
         $idTmp = $microExonID;
 
         $speciesDict = array("At"=>"A_thalian",
